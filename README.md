@@ -25,11 +25,11 @@
 
 1. Clone the repository / Download zip file
 
-    > `git clone https://github.com/SolanaNFTCollector/Solana-Minting-Bot.git`
+    `git clone https://github.com/SolanaNFTCollector/Solana-Minting-Bot.git`
 
     OR
 
-    > [Download Zip File](https://github.com/SolanaNFTCollector/Solana-Minting-Bot/archive/refs/heads/main.zip)
+    [Download Zip File](https://github.com/SolanaNFTCollector/Solana-Minting-Bot/archive/refs/heads/main.zip)
 
 ---
 
@@ -39,23 +39,23 @@
 
 2. Install all python module
 
-    > `pip install selenium requests`
+   `pip install selenium requests`
 
 ---
 
 3. Replace Phantom Passphrase and password in `config.json`
 
-    > `launchpadLink` --> Launchpad link on magic eden
+    `launchpadLink` --> Launchpad link on magic eden
 
-    > `seedPhrase` --> your phantom wallet passphrase (Careful do not share this key)
+    `seedPhrase` --> your phantom wallet passphrase (Careful do not share this key)
 
-    > `password` --> A password for your wallet
+    `password` --> A password for your wallet
 
 ---
 
 4. Open CMD and go to directory
 
-    > `cd /path/to/directory/magiceden-mint-bot/windows`
+    `cd /path/to/directory/magiceden-mint-bot/windows`
 
 ---
 
