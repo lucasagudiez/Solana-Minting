@@ -33,17 +33,21 @@
 
 ---
 
-1. Open command prompt
+1. Be sure you have installed Python correctly, [here is a link to download](https://www.python.org/downloads/)
 
 ---
 
-2. Install all python module
+2. Open command prompt
+
+---
+
+3. Install all python module
 
    `pip install selenium requests`
 
 ---
 
-3. Replace Phantom Passphrase and password in `config.json`
+4. Replace Phantom Passphrase and password in `config.json`
 
     `launchpadLink` --> Launchpad link on magic eden
 
@@ -53,13 +57,13 @@
 
 ---
 
-4. Open CMD and go to directory
+5. Open CMD and go to directory
 
     `cd /path/to/directory/magiceden-mint-bot/windows`
 
 ---
 
-4. Run the python file
+6. Run the python file
 
     windows : `python main.py`
 
