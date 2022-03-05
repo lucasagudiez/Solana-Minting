@@ -43,7 +43,7 @@
 
 3. Install all python module
 
-   `pip install selenium requests`
+   `pip install selenium requests webdriver-manager`
 
 ---
 

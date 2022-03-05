@@ -109,14 +109,6 @@ def mint(values, isWindows):
 
     options = Options()
 
-    if isWindows:
-        chrome_path = str(pathlib.Path(
-            __file__).parent.resolve()) + "/windows/chromedriver.exe"
-    else:
-        chrome_path = str(pathlib.Path(
-            __file__).parent.resolve()) + "/mac/chromedriver"
-    
-    os.chmod(chrome_path, 755)
 
     options.add_extension("Phantom.crx")
     options.add_argument("--disable-gpu")
@@ -126,7 +118,9 @@ def mint(values, isWindows):
 
     prefs = {"profile.managed_default_content_settings.images": 2}
     options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=chrome_path, options=options)
+
+    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
+    print("Assertion - successfully found chrome driver")
 
 
     # opens the launchpad page
