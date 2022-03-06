@@ -43,7 +43,13 @@
 
 3. Install all python module
 
-   `pip install selenium requests webdriver-manager`
+   `pip install selenium requests`
+   
+   and
+
+   `python -m pip install git+https://github.com/np-8/webdriver_manager.git`
+
+   (currently using this since the last webdriver manager main isn't working)
 
 ---
 
