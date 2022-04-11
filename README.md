@@ -4,6 +4,8 @@
 
 ### You can launch multiple instances of the bot to bypass minting limit / wallet
 
+You can support me with some SOL : CUT41x3ZmXdh8nqY1W9c5c8wp4mGzU4VE9wnnxJTsRDf
+
 ### Support
 
 -   [x] Window
