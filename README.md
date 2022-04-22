@@ -44,13 +44,8 @@ You can support me with some SOL : CUT41x3ZmXdh8nqY1W9c5c8wp4mGzU4VE9wnnxJTsRDf
 
 3. Install all python module
 
-   `pip install selenium requests`
+   `pip install selenium requests webdriver-manager`
    
-   and
-
-   `python -m pip install git+https://github.com/np-8/webdriver_manager.git`
-
-   (currently using this since the last webdriver manager main isn't working)
 
 4. Replace Phantom Passphrase and password in `config.json`
 

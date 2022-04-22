@@ -31,7 +31,7 @@ def mint(values, isWindows):
             By.XPATH, "//button[contains(text(),'Phantom')]")
         phantom.click()
 
-
+        driver.maximize_window()
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'Connect')]")))
         connect = driver.find_element(
@@ -158,6 +158,11 @@ def mint(values, isWindows):
 
     prefs = {"profile.managed_default_content_settings.images": 2}
     options.add_experimental_option("prefs", prefs)
+    options.add_experimental_option("excludeSwitches", ["enable-logging"])
+
+    #options for chrome install
+    os.environ['WDM8LOCAL'] = '1'
+
 
     driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
     print("Assertion - successfully found chrome driver")
