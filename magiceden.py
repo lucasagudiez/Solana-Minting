@@ -111,26 +111,6 @@ def mint(values, isWindows):
         closePopupButton.click()
         print("Status - Finished Closing Popup")
 
-    ''' def avaitMint():
-        print("Status - Waiting for Mint, maximum time wait is 24h, after that please restart bot")
-        WebDriverWait(driver, 60*60*24).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[contains(text(), 'Mint your token!')]")))
-        mint_your_token = driver.find_element(
-            By.XPATH, "//button[contains(text(), 'Mint your token!')]")
-        driver.execute_script("arguments[0].click();", mint_your_token)
-
-        original_window = driver.current_window_handle
-        WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
-        for window_handle in driver.window_handles:
-            if window_handle != original_window:
-                driver.switch_to.window(window_handle)
-                break
-
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[contains(text(), 'Approve')]")))
-        approve = driver.find_element(
-            By.XPATH, "//button[contains(text(), 'Approve')]")
-        approve.click() '''
     def avaitMint():
         print("Status - Waiting for Mint, maximum time wait is 24h, after that please restart bot")
         WebDriverWait(driver, 60*60*24).until(EC.presence_of_element_located(
