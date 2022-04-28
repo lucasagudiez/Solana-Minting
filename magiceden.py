@@ -20,10 +20,9 @@ def mint(values, isWindows):
     def initWallet():
         print("Status - Initializing wallet")
         # add wallet to chrome
-        if isWindows:
-            driver.switch_to.window(driver.window_handles[0])
-        else:
-            driver.switch_to.window(driver.window_handles[1])
+
+        driver.switch_to.window(driver.window_handles[1])
+
         print("Event - switch window")
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'Use Secret Recovery Phrase')]")))
@@ -95,7 +94,6 @@ def mint(values, isWindows):
             By.XPATH, "//button[contains(text(),'Connect')]")
         popup_connect.click()
         driver.switch_to.window(main_window)
-
         time.sleep(3)
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'I understand')]")))
@@ -113,7 +111,7 @@ def mint(values, isWindows):
         closePopupButton.click()
         print("Status - Finished Closing Popup")
 
-    def avaitMint():
+    ''' def avaitMint():
         print("Status - Waiting for Mint, maximum time wait is 24h, after that please restart bot")
         WebDriverWait(driver, 60*60*24).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(), 'Mint your token!')]")))
@@ -132,7 +130,31 @@ def mint(values, isWindows):
             (By.XPATH, "//button[contains(text(), 'Approve')]")))
         approve = driver.find_element(
             By.XPATH, "//button[contains(text(), 'Approve')]")
-        approve.click()
+        approve.click() '''
+    def avaitMint():
+        print("Status - Waiting for Mint, maximum time wait is 24h, after that please restart bot")
+        WebDriverWait(driver, 60*60*24).until(EC.presence_of_element_located(
+            (By.XPATH, "//button[contains(text(), 'Mint your token!')]")))
+        print("Found the mint button")
+        trys = 0
+        while trys < 10:  # Try to mint 10 times
+            mint_your_token = driver.find_element(
+                By.XPATH, "//button[contains(text(), 'Mint your token!')]")
+            driver.execute_script("arguments[0].click();", mint_your_token)
+            print("Found the button")
+
+            original_window = driver.current_window_handle
+            WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
+            for window_handle in driver.window_handles:
+                if window_handle != original_window:
+                    driver.switch_to.window(window_handle)
+                    break
+            WebDriverWait(driver, 60).until(EC.presence_of_element_located(
+                (By.XPATH, "//button[contains(text(), 'Approve')]")))
+            approve = driver.find_element(
+                By.XPATH, "//button[contains(text(), 'Approve')]")
+            approve.click()
+            trys += 1
 
     print("Bot started")
     if isWindows:
