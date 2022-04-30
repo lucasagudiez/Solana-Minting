@@ -74,7 +74,6 @@ def mint(values, isWindows):
             By.XPATH, "//button[contains(text(),'Phantom')]")
         phantom.click()
 
-        time.sleep(10)
         WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
         driver.switch_to.window(driver.window_handles[1])
 
