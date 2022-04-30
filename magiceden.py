@@ -74,26 +74,16 @@ def mint(values, isWindows):
             By.XPATH, "//button[contains(text(),'Phantom')]")
         phantom.click()
 
-        driver.maximize_window()
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[contains(text(),'Connect')]")))
-        connect = driver.find_element(
-            By.XPATH, "//button[contains(text(),'Connect')]")
-        connect.click()
-
-        original_window = driver.current_window_handle
+        time.sleep(10)
         WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
-        for window_handle in driver.window_handles:
-            if window_handle != original_window:
-                driver.switch_to.window(window_handle)
-                break
+        driver.switch_to.window(driver.window_handles[1])
 
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'Connect')]")))
         popup_connect = driver.find_element(
             By.XPATH, "//button[contains(text(),'Connect')]")
         popup_connect.click()
-        driver.switch_to.window(main_window)
+        driver.switch_to.window(driver.window_handles[0])
         time.sleep(3)
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'I understand')]")))
@@ -101,15 +91,6 @@ def mint(values, isWindows):
             By.XPATH, "//button[contains(text(),'I understand')]")
         agree.click()
         print("Status - Finished Selecting Wallet on ME")
-
-    def closePopup():
-        print("Status - Closing Popup")
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[@class='wallet-adapter-modal-button-close']")))
-        closePopupButton = driver.find_element(
-            By.XPATH, "//button[@class='wallet-adapter-modal-button-close']")
-        closePopupButton.click()
-        print("Status - Finished Closing Popup")
 
     def avaitMint():
         print("Status - Waiting for Mint, maximum time wait is 24h, after that please restart bot")
@@ -172,7 +153,7 @@ def mint(values, isWindows):
     selectWallet()
 
     # Actions - close popup
-    closePopup()
+    # closePopup()
 
     # Actions - MINTS WHEN TIMER IS UP
     avaitMint()
