@@ -1,5 +1,3 @@
-import requests
-import base64
 import time
 import os
 import pathlib
@@ -55,10 +53,7 @@ def mint(values, isWindows):
             By.XPATH, "//button[contains(text(),'Finish')]")
         driver.execute_script("arguments[0].click();", finish)
         print("Status - Finished Initializing wallet")
-        main_window = driver.window_handles[0]
-        driver.switch_to.window(main_window)
-
-        return main_window
+        driver.switch_to.window(driver.window_handles[0])
 
     def selectWallet():
         print("Status - Selecting wallet on ME")
@@ -146,7 +141,7 @@ def mint(values, isWindows):
     driver.maximize_window()
 
     # Actions - Initialize wallet
-    main_window = initWallet()
+    initWallet()
 
     # Actions - select wallet on magic eden
     selectWallet()
