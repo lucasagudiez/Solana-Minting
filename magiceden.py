@@ -19,7 +19,10 @@ def mint(values, isWindows):
         print("Status - Initializing wallet")
         # add wallet to chrome
 
-        driver.switch_to.window(driver.window_handles[1])
+        if driver.current_url != "chrome-extension://gfoeaaijjjdneafnjccohndgdljjoemp/onboarding.html":
+            driver.switch_to.window(driver.window_handles[0])
+        if driver.current_url != "chrome-extension://gfoeaaijjjdneafnjccohndgdljjoemp/onboarding.html":
+            driver.switch_to.window(driver.window_handles[1])
 
         print("Event - switch window")
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
