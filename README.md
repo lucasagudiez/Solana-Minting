@@ -91,6 +91,6 @@ CUT41x3ZmXdh8nqY1W9c5c8wp4mGzU4VE9wnnxJTsRDf
 
 ---
 # 🚩 Troubleshooting
--   This bot uses ChromeDriver so on mac there is a possiblity that you will have to **allow the software to run in your privacy settings**. Check mac folder for more info.
+-   This bot uses ChromeDriver so on mac there is a possibility that you will have to **allow the software to run in your privacy settings**. Check mac folder for more info.
 
 -   The chrome window will appear **WITHOUT** loading the images, this is to ensure the fastest loading.
