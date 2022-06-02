@@ -44,7 +44,7 @@ Easy setup which uses ChromeDriver to open up a new chrome instance and mint the
 
 ---
 
-# 📝 Tutorial
+# 📝 Tutorial | [▶️ Video tutorial](https://solananftcollector.github.io/Solana-Minting-Bot/)
 
 1. Clone the repository / Download zip file
 
